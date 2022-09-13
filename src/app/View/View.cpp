@@ -18,6 +18,7 @@ void View::updateState(std::string strState)
     {
         case LIGHT_OFF:
             if (strState == "StateOn") {
+                count = 0;
                 lightState = LIGHT_ON;
             }
         break;
@@ -25,6 +26,9 @@ void View::updateState(std::string strState)
         case LIGHT_ON:
             if (strState == "StateOff") {
                 lightState = LIGHT_OFF;
+            }
+            else if (strState == "Next") {
+                count++;
             }
         break;
     }
@@ -40,18 +44,14 @@ void View::lightView()
         break;
 
         case LIGHT_ON:
-            lightOn();
+            lightOn(25-count);
         break;
     }
 }
 
-void View::lightOn()
+void View::lightOn(int pin)
 {
-    static unsigned int prevTime = 0;
-    
-    if (millis() - prevTime < 300) return;
-    prevTime = millis();
-    light->Toggle();
+    light->On(pin);
 }
 
 void View::lightOff()

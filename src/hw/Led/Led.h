@@ -6,15 +6,19 @@ class Led
 private:
     const bool ON = 1;
     const bool OFF = 0;
-    int pinNumber;
+    int pinNumber1;
+    int pinNumber2;
+    int pinNumber3;
+    int pinNumber4;
+    int pinNumber5;
     bool ledState;
 
-    void writePin(bool pinState);
+    void writePin(int pin, bool pinState);
 
 public:
-    Led(int pin);
+    Led(int pin1, int pin2, int pin3, int pin4, int pin5);
     virtual ~Led();
-    void On();
+    void On(int pinNumber);
     void Off();
     void Toggle();
 };

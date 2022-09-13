@@ -12,6 +12,7 @@ Controller::~Controller()
 
 void Controller::updateEvent(std::string strBtn)
 {
+    static unsigned int count = 0;
     switch (lightState)
     {
     case LIGHT_OFF:
@@ -23,8 +24,15 @@ void Controller::updateEvent(std::string strBtn)
     
     case LIGHT_ON:
         if (strBtn == "powerButton") {
-            lightState = LIGHT_OFF;
-            view->updateState("StateOff");
+            count++;
+            if(count >= 5){
+                lightState = LIGHT_OFF;
+                view->updateState("StateOff");
+                count = 0;
+            }
+            else{
+                view->updateState("Next");
+            }
         }
         break;
     }

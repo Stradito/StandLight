@@ -10,6 +10,7 @@ class View
 {
 private:
     int lightState;
+    int count = 0;
     Led *light;
 
 public:
@@ -17,7 +18,7 @@ public:
     virtual ~View();
     void lightView();
     void updateState(std::string strState);
-    void lightOn();
+    void lightOn(int pin);
     void lightOff();
 };
 
